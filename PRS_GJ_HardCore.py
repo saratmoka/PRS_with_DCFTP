@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 """
 Created on Thu Feb 22 12:55:29 2018
 
@@ -20,7 +21,7 @@ import time
 #import matplotlib.pyplot as plt
 import datetime
 
-## Euclidean distance between two points on R^2 
+## Euclidean distance between two points on R^2
 def euclidean2dim(yy,xx):
     return np.sqrt((xx[0] - yy[0])**2 + (xx[1] - yy[1])**2)
 
@@ -31,8 +32,8 @@ def PointsOnCircle(n, rad, x, y):
     for _ in range(n):
         r = rad*np.sqrt(np.random.random_sample())
         theta = 2*np.pi*np.random.random_sample()
-        Points.append((x + r*np.cos(theta), y + r*np.cos(theta))) 
-    return Points    
+        Points.append((x + r*np.cos(theta), y + r*np.cos(theta)))
+    return Points
 
 
 Beta_0 = 0.1
@@ -52,7 +53,7 @@ Itot = 1000 ## No of perfect samples generated
 
 print('\n Intensity = ', Beta, '\n Beta_0:', Beta_0, '\n Hard-core distance = ', HCdist,'\n # iterations = ', Itot)
 print('Program Starting time: ', datetime.datetime.now().time())
-print('++++++++++ GJ Alg for Hard Core Process +++++++++++++++') 
+print('++++++++++ GJ Alg for Hard Core Process +++++++++++++++')
 
 np.random.seed(0)
 
@@ -64,10 +65,10 @@ for b in range(Itot):
     count_while = 0
     while True:
         count_while = count_while + 1
-        
+
         N = len(Disks)
         Bad_ind = []
-        
+
         stime = time.time()
         for n in range(N):
             Bad = False
@@ -75,12 +76,12 @@ for b in range(Itot):
                 if m != n and euclidean2dim(Disks[n], Disks[m]) < HCdist:
                     Bad = True
                     break
-    
+
             if Bad == True:
                 Bad_ind.append(n)
         print('Time 1:', time.time() - stime)
         len_bad = len(Bad_ind)
-        
+
         if len_bad == 0:
             break
         else:
@@ -95,24 +96,18 @@ for b in range(Itot):
                             break
                     if Inside == False:
                         Ps.append(x)
-                        
+
             Disks_good = [Disks[n] for n in range(N) if (n not in Bad_ind)]
             Disks = Disks_good + Ps
- 
+
     npoints = np.divide(b, b + 1)*npoints + np.divide(len(Disks), b + 1)
     print('exp no of points :', npoints)
     Exp_while_loops = np.divide(b, b + 1)*Exp_while_loops + np.divide(count_while, b + 1)
     print('Expected while loops :', Exp_while_loops)
 
-print('++++++++++ GJ Alg for Hard Core Process +++++++++++++++') 
-print('Parmeters: \n Intensity = ', Beta, '\n Beta_0:', Beta_0, '\n Hard-core distance = ', HCdist,'\n # iterations = ', Itot)  
+print('++++++++++ GJ Alg for Hard Core Process +++++++++++++++')
+print('Parmeters: \n Intensity = ', Beta, '\n Beta_0:', Beta_0, '\n Hard-core distance = ', HCdist,'\n # iterations = ', Itot)
 print('\nResults:')
 print('  Estimated # points:', npoints)
 print('  Expected # while loops:', Exp_while_loops)
 print('Program Ending time: ', datetime.datetime.now().time())
-       
-
-
-
-
-     
