@@ -1,5 +1,5 @@
 # PRS_with_DCFTP
-Details of the python codes are given below:
+PRS_PSM.py and PRS_Strauss.py are based on the partial rejection sampling (PRS) by Moka and Kroese (2019). PRS_GJ_HardCore.py is based on the PRS by Guo and Jerrum (2018). More description of these python codes are given below:
 
   1. PRS_PSM.py: generates samples from penetrable spheres mixture model on [0,1]^2, which is absolutely continuous with a homogeneous Poisson point process with intensity 4*(kappa_1 + kappa_2)/(pi*IntRange*IntRange). Where 4*kappa_i/(pi*IntRange) is the intensity of type_i points, and IntRange is the interaction range. On each cell, perfect samples generated using dominated CFTP.
 
